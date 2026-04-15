@@ -6,3 +6,6 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+// 2D physics material with zero friction and zero bounce,
+// ensuring smooth arcade-style movement without resistance
+// or rebound effects.

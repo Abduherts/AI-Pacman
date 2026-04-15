@@ -12,3 +12,7 @@ PhysicsMaterial2D:
   bounciness: 0
   m_FrictionCombine: 1
   m_BounceCombine: 4
+/// <summary>
+/// 2D physics material configured with zero friction and zero bounce,
+/// ensuring smooth arcade-style movement without resistance or rebound effects.
+/// </summary>

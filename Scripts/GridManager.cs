@@ -48,6 +48,8 @@ namespace PacManAI
         {
             var openSet = new PriorityQueue<Vector2Int, int>();
             openSet.Enqueue(start, 0);
+            // cameFrom: stores the best previous node for each visited node,
+// used later to reconstruct the shortest path.
 
             var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
             var gScore = new Dictionary<Vector2Int, int> { [start] = 0 };
@@ -93,3 +95,8 @@ namespace PacManAI
         }
     }
 }
+// gScore: actual cost from the start node to this neighbor.
+// Heuristic(): estimated cost from this neighbor to the goal.
+// fScore: total estimated cost (gScore + heuristic).
+// openSet.Enqueue(): adds the neighbor to the priority queue
+// so it can be explored based on lowest total cost first.

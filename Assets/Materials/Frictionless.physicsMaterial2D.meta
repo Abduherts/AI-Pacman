@@ -6,6 +6,6 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-// 2D physics material with zero friction and zero bounce,
-// ensuring smooth arcade-style movement without resistance
-// or rebound effects.
+// Unity meta file configuration using NativeFormatImporter.
+// Stores GUID and internal asset reference information.
+// Ensures Unity can track and serialize the asset correctly.

@@ -9,6 +9,7 @@ public static class GhostEvaluator
     public static float EvaluateState(Node ghostNode, Node pacmanNode, GhostType type, List<Node> pellets)
     {
         float score = 0;
+         // Calculate Euclidean distance between ghost and Pac-Man
         float distanceToPacman = Vector2.Distance(ghostNode.transform.position, pacmanNode.transform.position);
 
         switch (type)

@@ -1,6 +1,10 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &1717795626721137653
+// Unity uses .meta files to store unique identifiers (GUIDs).
+// These GUIDs allow the engine to maintain stable references
+// between scripts, prefabs, scenes, and other assets,
+// even if files are renamed or moved.
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

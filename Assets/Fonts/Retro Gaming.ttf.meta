@@ -19,3 +19,11 @@ TrueTypeFontImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+
+// Unity-generated metadata file for Retro Gaming.ttf.
+// Uses TrueTypeFontImporter to define font import settings
+// such as font size, spacing, rendering mode, and GUID reference.
+// Unity .meta file for the Retro Gaming TrueType font.
+// Contains GUID and TrueTypeFontImporter settings that control
+// how the font is processed, rendered, and serialized within Unity.
+// Ensures consistent UI text appearance and stable asset references.

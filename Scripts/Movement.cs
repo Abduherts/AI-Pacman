@@ -1,21 +1,39 @@
 using UnityEngine;
 
+// Ensures this GameObject has a Rigidbody2D component
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
+    // Base movement speed
     public float speed = 8f;
+
+    // Multiplier for speed adjustments (e.g., power-ups)
     public float speedMultiplier = 1f;
+
+    // Starting movement direction
     public Vector2 initialDirection;
+
+    // Defines which layers count as obstacles
     public LayerMask obstacleLayer;
 
+    // Rigidbody reference (readable but not modifiable externally)
     public Rigidbody2D rb { get; private set; }
+
+    // Current movement direction
     public Vector2 direction { get; private set; }
+
+    // Queued direction for smoother input
     public Vector2 nextDirection { get; private set; }
+
+    // Initial spawn position
     public Vector3 startingPosition { get; private set; }
 
     private void Awake()
     {
+        // Cache Rigidbody reference
         rb = GetComponent<Rigidbody2D>();
+
+        // Store initial spawn position
         startingPosition = transform.position;
     }
 
@@ -26,18 +44,22 @@ public class Movement : MonoBehaviour
 
     public void ResetState()
     {
+        // Reset movement variables
         speedMultiplier = 1f;
         direction = initialDirection;
         nextDirection = Vector2.zero;
+
+        // Reset position
         transform.position = startingPosition;
+
+        // Enable physics movement
         rb.isKinematic = false;
         enabled = true;
     }
 
     private void Update()
     {
-        // Try to move in the next direction while it's queued to make movements
-        // more responsive
+        // Try applying queued direction for responsive controls
         if (nextDirection != Vector2.zero) {
             SetDirection(nextDirection);
         }
@@ -45,17 +67,22 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Physics-based movement calculation
         Vector2 position = rb.position;
-        Vector2 translation = speed * speedMultiplier * Time.fixedDeltaTime * direction;
 
+        // Calculate movement translation
+        Vector2 translation =
+            speed * speedMultiplier *
+            Time.fixedDeltaTime *
+            direction;
+
+        // Move Rigidbody smoothly
         rb.MovePosition(position + translation);
     }
 
     public void SetDirection(Vector2 direction, bool forced = false)
     {
-        // Only set the direction if the tile in that direction is available
-        // otherwise we set it as the next direction so it'll automatically be
-        // set when it does become available
+        // Change direction only if path is clear
         if (forced || !Occupied(direction))
         {
             this.direction = direction;
@@ -63,15 +90,25 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            // Store direction until path becomes available
             nextDirection = direction;
         }
     }
 
     public bool Occupied(Vector2 direction)
     {
-        // If no collider is hit then there is no obstacle in that direction
-        RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.75f, 0f, direction, 1.5f, obstacleLayer);
+        // Cast a box in the given direction to detect obstacles
+        RaycastHit2D hit =
+            Physics2D.BoxCast(
+                transform.position,
+                Vector2.one * 0.75f,
+                0f,
+                direction,
+                1.5f,
+                obstacleLayer
+            );
+
+        // If collider is detected, path is blocked
         return hit.collider != null;
     }
-
 }

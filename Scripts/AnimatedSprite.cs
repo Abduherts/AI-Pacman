@@ -1,10 +1,9 @@
 using UnityEngine;
 
-/// <summary>
 /// Handles frame-based sprite animation by cycling
 /// through a provided array of sprites at a fixed interval.
 /// Used for animating Pac-Man and ghost characters.
-/// </summary>
+//attributes
 [RequireComponent(typeof(SpriteRenderer))]
 public class AnimatedSprite : MonoBehaviour
 {
@@ -41,6 +40,7 @@ public class AnimatedSprite : MonoBehaviour
     // Starts repeating animation cycle
     private void Start()
     {
+    // Calls a function repeatedly at fixed time intervals.
         InvokeRepeating(nameof(Advance), animationTime, animationTime);
     }
 
